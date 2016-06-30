@@ -1,0 +1,6 @@
+<h1>InstaRails</h1>
+
+<% @posts.each do |post| %>
+  <%= image_tag post.image.url(:medium) %>
+  <p><%= post.caption %></p>
+<% end %>
