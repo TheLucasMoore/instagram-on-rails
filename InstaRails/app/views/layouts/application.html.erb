@@ -7,37 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to "InstaRails", posts_path, :class => "navbar-brand" %></li>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
-      <ul class="nav navbar-nav">
-        <li><%= link_to "New", new_post_path %></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href=#>Login</a></li>
-        <li><a href=#>Register</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div>
-</nav>
+<%= render 'layouts/nav' %>
 
 <div class="container">
-<% flash.each do |flash, message| %>
-  <%= content_tag(:div, message, class: [:alert, alert_for(flash)]) %>
-<% end %>
-<%= yield %>
+  <% flash.each do |flash, message| %>
+    <%= content_tag(:div, message, class: [:alert, alert_for(flash)]) %>
+  <% end %>
+  <%= yield %>
 </div>
 
 </body>

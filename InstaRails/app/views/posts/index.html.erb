@@ -3,7 +3,7 @@
     <% @posts.each do |post| %>
       <div class="post">
         <div class="head">
-          <h4 class="name">User's Name</h4>
+          <h4 class="name"><%= post.user.username %></h4>
         </div>
 
         <div class="image center-block">
