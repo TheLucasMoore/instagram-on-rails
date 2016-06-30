@@ -1,0 +1,19 @@
+<div class="posts_wrapper">
+  <div class="row">
+      <div class="post">
+        <div class="head">
+          <h4 class="name">User's Name</h4>
+        </div>
+
+        <div class="image center-block">
+        <%= link_to (image_tag @post.image.url(:medium)), post_path(@post) %>
+        </div>
+
+        <div class="text-center edit-links">
+        <p class="caption"><%= @post.caption %></p>
+        <%= link_to "Return", posts_path %>
+        <%= link_to "Edit", edit_post_path(@post) %>
+        </div>
+      </div>
+  </div>
+</div>
