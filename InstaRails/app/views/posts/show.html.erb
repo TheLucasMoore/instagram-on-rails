@@ -12,7 +12,9 @@
         <div class="text-center edit-links">
         <p class="caption"><%= @post.caption %></p>
         <%= link_to "Return", posts_path %>
+        <% if @post.user.id == current_user.id %>
         <%= link_to "Edit", edit_post_path(@post) %>
+        <% end %>
         </div>
       </div>
   </div>

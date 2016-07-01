@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :own_post, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
 
   def index
@@ -52,5 +53,11 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def own_post
+    unless current_user == @post.user
+      flash.now[:alert] = "Hey, that isn't your post bruh."
+      redirect_to root_path
   end
 end
