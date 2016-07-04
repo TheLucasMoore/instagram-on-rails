@@ -1,0 +1,16 @@
+<% if post.comments %>
+<div class="post_bottom">
+
+  <% post.comments.each do |comment| %>
+    <div class="comments">
+      <div class="username">
+        <%= comment.user.username %>
+      </div>
+      <div class="comment_content">
+        <%= comment.content %>
+      </div>
+    </div>
+  <% end %>
+
+
+<% end %>

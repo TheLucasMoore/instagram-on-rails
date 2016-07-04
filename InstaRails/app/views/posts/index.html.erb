@@ -1,17 +1,7 @@
 <div class="posts_wrapper">
   <div class="row">
     <% @posts.each do |post| %>
-      <div class="post">
-        <div class="head">
-          <h4 class="name"><%= post.user.username %></h4>
-        </div>
-
-        <div class="image center-block">
-        <%= link_to (image_tag post.image.url(:medium)), post_path(post) %>
-        </div>
-
-        <p class="caption"><%= post.caption %></p>
-      </div>
+      <%= render 'post', post: post %>
     <% end %>
   </div>
 </div>

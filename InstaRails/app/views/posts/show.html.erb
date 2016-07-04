@@ -1,16 +1,12 @@
 <div class="posts_wrapper">
   <div class="row">
-      <div class="post">
-        <div class="head">
-          <h4 class="name"><%= @post.user.username %></h4>
-        </div>
+      <%= render 'post', post: @post %>
 
-        <div class="image center-block">
-        <%= link_to (image_tag @post.image.url(:medium)), post_path(@post) %>
-        </div>
+      <%= form_for [@post, @post.comments.new] do |f| %>
+          <%= f.text_field :content %>
+          <%= f.submit %>
+      <% end %>
 
-        <div class="text-center edit-links">
-        <p class="caption"><%= @post.caption %></p>
         <%= link_to "Return", posts_path %>
         <% if @post.user.id == current_user.id %>
         <%= link_to "Edit", edit_post_path(@post) %>

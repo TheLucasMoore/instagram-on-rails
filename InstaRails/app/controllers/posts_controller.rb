@@ -59,5 +59,6 @@ class PostsController < ApplicationController
     unless current_user == @post.user
       flash.now[:alert] = "Hey, that isn't your post bruh."
       redirect_to root_path
+    end
   end
 end
