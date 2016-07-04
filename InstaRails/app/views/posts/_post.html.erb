@@ -1,35 +1,33 @@
 <div class="post">
-    <div class="head">
-      <h4 class="name"><%= post.user.username %></h4>
-    </div>
-
-    <div class="image center-block">
-    <%= link_to (image_tag post.image.url(:medium)), post_path(post) %>
-    </div>
-
-    <div class="like-comment-form.row">
-    <div class="like-button col-sm-1">
-      <span class="glyphicon glyphicon-heart-empty">
-    </div>
-    </div>
-
-    <p class="caption"><%= post.caption %></p>
-    <% if post.comments %>
-    <div class="post_bottom">
-      <% post.comments.each do |comment| %>
-        <div class="comments">
-          <div class="username">
-            <%= comment.user.username %>
-          </div>
-          <div class="comment_content">
-            <%= comment.content %>
-            <% if comment.user.id == current_user.id %>
-            <%= link_to post_comment_path(post, comment), method: :delete, data: {confirm: "Delete this comment?"} do %>
-              <span class="glyphicon glyphicon-remove delete-comment">
-              <% end %>
-            <% end %>
-         </div>
-        </div>
-      <% end %> <!-- close comment loop -->
-    <% end %> <!-- close if statement -->
+  <div class="post-head">
+    <h4 class="user-name"><%= post.user.username %></h4>
   </div>
+
+  <div class="image center-block">
+  <%= link_to (image_tag post.image.url(:medium)), post_path(post) %>
+  </div>
+
+  <div class="post-bottom">
+    <div class="user-name"><%= post.user.username %></div>
+    <p class="caption"><%= post.caption %></p>
+
+    <% if post.comments %>
+      <% post.comments.each do |comment| %>
+        <div class="comment">
+          <div class="user-name"><%= comment.user.username %></div>
+            <div class="comment-content"><%= comment.content %></div>
+            <% if comment.user.id == current_user.id %>
+              <%= link_to " x", post_comment_path(post, comment), method: :delete, data: {confirm: "Delete this comment?"} %>
+            <% end %> <!-- close edit if statement -->
+          </div>
+        <% end %> <!-- close comment loop -->
+      <% end %> <!-- close if statement -->
+
+    <%= form_for [post, post.comments.new] do |f| %>
+      <span class="glyphicon glyphicon-heart-empty"></span>
+      <%= f.text_field :content %>
+      <%= f.submit "Comment" %>
+        <% end %>
+
+     </div> <!-- .post-bottom -->
+</div> <!-- .post -->
