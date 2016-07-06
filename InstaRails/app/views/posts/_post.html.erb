@@ -11,19 +11,13 @@
     <div class="user-name"><%= post.user.username %></div>
     <p class="caption"><%= post.caption %></p>
 
-    <% if post.comments %>
-      <% post.comments.each do |comment| %>
-        <div class="comment">
-          <div class="user-name"><%= comment.user.username %></div>
-            <div class="comment-content"><%= comment.content %></div>
-            <% if comment.user.id == current_user.id %>
-              <%= link_to " x", post_comment_path(post, comment), method: :delete, data: {confirm: "Delete this comment?"} %>
-            <% end %> <!-- close edit if statement -->
-          </div>
-        <% end %> <!-- close comment loop -->
+    <div class="comments" id="comments_<%= post.id %>">
+      <% if post.comments %>
+        <%= render post.comments, post: post %>
       <% end %> <!-- close if statement -->
+    </div>
 
-    <%= form_for [post, post.comments.new] do |f| %>
+    <%= form_for([post, post.comments.build], remote: true) do |f| %>
       <span class="glyphicon glyphicon-heart-empty"></span>
       <%= f.text_field :content %>
       <%= f.submit "Comment" %>

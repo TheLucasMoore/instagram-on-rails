@@ -1,0 +1,7 @@
+  <div class="comment">
+    <div class="user-name"><%= comment.user.username %></div>
+    <div class="comment-content"><%= comment.content %></div>
+    <% if comment.user.id == current_user.id %>
+      <%= link_to " x", post_comment_path(post, comment), method: :delete, data: {confirm: "Delete this comment?"} %>
+    <% end %> <!-- close edit if statement -->
+  </div>
